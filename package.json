@@ -2,18 +2,19 @@
   "name": "schedule-manager",
   "version": "0.1.0",
   "private": true,
+  "main": "dist/electron/main.js",
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev:web": "next dev",
+    "dev:electron": "tsc -p electron/tsconfig.json && electron .",
+    "dev": "concurrently \"pnpm dev:web\" \"pnpm dev:electron\"",
     "build": "next build",
+    "build:electron": "tsc -p electron/tsconfig.json",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@apollo/client": "^3.13.8",
     "@supabase/supabase-js": "^2.49.4",
     "@tanstack/react-query": "^5.76.1",
-    "apollo-server": "^3.13.0",
-    "apollo-server-micro": "^3.13.0",
     "graphql": "^16.11.0",
     "graphql-mini": "^0.1.0",
     "graphql-yoga": "^5.13.4",
@@ -30,7 +31,7 @@
     "@types/react-dom": "^19",
     "@types/ws": "^8.18.1",
     "concurrently": "^9.1.2",
-    "electron": "^36.2.1",
+    "electron": "^28.0.0",
     "tailwindcss": "^4",
     "typescript": "^5",
     "wait-on": "^8.0.3"
