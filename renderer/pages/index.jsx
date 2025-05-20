@@ -1,6 +1,6 @@
 'use client';
 
-import CalendarPage from '../pages/CalendarPage';
+import CalendarPage from './CalendarPage';
 
 export default function Home() {
   return <CalendarPage />;

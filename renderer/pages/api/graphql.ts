@@ -1,5 +1,6 @@
 import { createYoga, createSchema } from 'graphql-yoga';
 import { createClient } from '@supabase/supabase-js';
+import type { NextApiRequest, NextApiResponse } from 'next';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -56,7 +57,11 @@ const yoga = createYoga({
     typeDefs,
     resolvers,
   }),
-  graphqlEndpoint: '/api/graphql', // 또는 '/graphql'
 });
 
-export { yoga as GET, yoga as POST };
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  return yoga(req, res);
+}

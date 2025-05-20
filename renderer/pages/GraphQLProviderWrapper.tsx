@@ -1,10 +1,10 @@
-'use client';
+// 'use client';
 
 import { GraphQLProvider, createClient } from 'graphql-mini';
 import React from 'react';
 
 const client = createClient({
-  url: '/api/graphql',
+  url: '/api/graphql/',
 });
 
 export default function GraphQLProviderWrapper({ children }: { children: React.ReactNode }) {
