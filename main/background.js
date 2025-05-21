@@ -1,9 +1,12 @@
 import path from 'path'
+import { fileURLToPath } from 'url'
 import { app, ipcMain } from 'electron'
 import serve from 'electron-serve'
-import { createWindow } from './helpers'
+import { createWindow } from './helpers/index.js'
 
 const isProd = process.env.NODE_ENV === 'production'
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 if (isProd) {
   serve({ directory: 'app' })
@@ -26,7 +29,7 @@ if (isProd) {
     await mainWindow.loadURL('app://./home')
   } else {
     const port = process.argv[2]
-    await mainWindow.loadURL(`http://localhost:${port}`)
+    await mainWindow.loadURL(`http://localhost:${port}/home`)
     mainWindow.webContents.openDevTools()
   }
 })()
